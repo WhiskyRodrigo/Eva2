@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SMedidorModel.DTO
+{
+    public class Medidor
+    {
+        private string nombre;
+        private string tipo;
+        private string texto;
+
+        public string Nombre { get => nombre; set => nombre = value; }
+        public string Tipo { get => tipo; set => tipo = value; }
+        public string Texto { get => texto; set => texto = value; }
+
+        public override string ToString()
+        {
+            return nombre + " " + texto + " " + tipo;
+            
+        }
+    }
+}

@@ -5,6 +5,10 @@ VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eva2", "Eva2\Eva2.csproj", "{9C7C9A17-B845-4C3E-B46C-1697B1884738}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServidorSocketUtils", "ServidorSocketUtils\ServidorSocketUtils.csproj", "{92E34ADC-D677-454F-AF92-FB0DCD1D5872}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMedidorModel", "SMedidorModel\SMedidorModel.csproj", "{AB650231-5825-41A5-A82B-6790629D75E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{9C7C9A17-B845-4C3E-B46C-1697B1884738}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C7C9A17-B845-4C3E-B46C-1697B1884738}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C7C9A17-B845-4C3E-B46C-1697B1884738}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92E34ADC-D677-454F-AF92-FB0DCD1D5872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92E34ADC-D677-454F-AF92-FB0DCD1D5872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92E34ADC-D677-454F-AF92-FB0DCD1D5872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92E34ADC-D677-454F-AF92-FB0DCD1D5872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB650231-5825-41A5-A82B-6790629D75E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB650231-5825-41A5-A82B-6790629D75E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB650231-5825-41A5-A82B-6790629D75E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB650231-5825-41A5-A82B-6790629D75E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
