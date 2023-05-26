@@ -29,14 +29,6 @@ namespace SMedidorModel.DAL
         //como vamos a hacer para que 2 hebras no accedan a la vez a este archivo?
 
 
-
-
-
-
-
-
-
-
         private static string url = Directory.GetCurrentDirectory(); //trae la ruta del proyecto
         private static string archivo = url + "/mensajes.txt"; // concatena los datos 
 

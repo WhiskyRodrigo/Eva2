@@ -1,5 +1,5 @@
-﻿using MensajeroModel.DAL;
-using MensajeroModel.DTO;
+﻿using SMedidorModel.DAL;
+using SMedidorModel.DTO;
 using ServidorSocketUtils.Comunicacion;
 using System;
 using System.Collections.Generic;
@@ -10,36 +10,38 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Mensajero.Comunicacion
+namespace Eva2.Comunicacion
 {
     public class HebraServidor
     {
-        private IMensajesDAL mensajesDAL = MensajesDALArchivos.GetInstancia();
+        private IMedidorDAL medidorDAL = MedidorDALArchivos.GetInstancia();
+        private int puerto;
+        public HebraServidor(int puerto)
+        {
+            this.puerto = puerto;
+        }
         public void Ejecutar()
         {
-            int puerto = Convert.ToInt32(ConfigurationManager.AppSettings["puerto"]);
-            ServerSocket servidor = new ServerSocket(puerto);
-            Console.WriteLine("S: servidor iniciado en puerto {0}", puerto);
-
+            ServerSocket servidor = new ServerSocket(this.puerto);
+            Console.WriteLine("S: Servidor iniciado en puerto {0}", this.puerto);
             if (servidor.Iniciar())
             {
                 while (true)
                 {
-                    Console.WriteLine("S: Esperando cliente.... ");
+                    Console.WriteLine("S: Esperando cliente....");
                     Socket cliente = servidor.ObtenerCliente();
                     Console.WriteLine("S: Cliente recibido");
                     ClienteCom clienteCom = new ClienteCom(cliente);
-                    
+
                     HebraCliente clienteThread = new HebraCliente(clienteCom);
-                    Thread t = new Thread(new ThreadStart(clienteThread.ejecutar));
+                    Thread t = new Thread(new ThreadStart(clienteThread.Ejecutar));
                     t.IsBackground = true;
                     t.Start();
-      
                 }
             }
             else
             {
-                Console.WriteLine("FALLO EN LA MATRIZ, ERROR #329-130 no se puede iniciar server en {0}", puerto);
+                Console.WriteLine("FALLO EN LA MATRIZ, ERROR #329-130 ABORTED,{0} no puede ser iniciado", puerto);
             }
         }
     }

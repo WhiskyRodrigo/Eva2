@@ -52,6 +52,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ServidorSocketUtils\ServidorSocketUtils.csproj">
+      <Project>{92e34adc-d677-454f-af92-fb0dcd1d5872}</Project>
+      <Name>ServidorSocketUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SMedidorModel\SMedidorModel.csproj">
+      <Project>{ab650231-5825-41a5-a82b-6790629d75e3}</Project>
+      <Name>SMedidorModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

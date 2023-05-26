@@ -1,5 +1,5 @@
-﻿using MensajeroModel.DAL;
-using MensajeroModel.DTO;
+﻿using SMedidorModel.DAL;
+using SMedidorModel.DTO;
 using ServidorSocketUtils.Comunicacion;
 using System;
 using System.Collections.Generic;
@@ -12,27 +12,29 @@ namespace Eva2.Comunicacion
    public class HebraCliente
     {
         private ClienteCom clienteCom;
-        private IMensajesDAL mensajesDAL = MensajesDALArchivos.GetInstancia();
+        private IMedidorDAL ImedidorDAL = MedidorDALArchivos.GetInstancia();
         public HebraCliente(ClienteCom clienteCom)
         {
             this.clienteCom = clienteCom;
         }
-        public void ejecutar()
+        public void Ejecutar()
         {
-            //Ahora traemos el codigo que atiende al cliente
-            clienteCom.Escribir("Ingrese nombre: ");
-            string nombre = clienteCom.Leer();
-            clienteCom.Escribir("Ingrese texto: ");
-            string texto = clienteCom.Leer();
-            Mensaje mensaje = new Mensaje()
+            //ahora traemos el codigo que atiende al cliente
+            clienteCom.Escribir("Ingrese número de medidor: ");
+            Int32 nroMedidor = Convert.ToInt32(clienteCom.Leer());
+            clienteCom.Escribir("Ingrese Fecha: ");
+            string fecha = clienteCom.Leer();
+            clienteCom.Escribir("Ingrese valor de Consumo: ");
+            decimal valorConsumo = Convert.ToDecimal(clienteCom.Leer());
+            Medidor medidor = new Medidor()
             {
-                Nombre = nombre,
-                Texto = texto,
-                Tipo = "TCP"
+                NroMedidor = nroMedidor,
+                Fecha = fecha,
+                ValorConsumo = valorConsumo
             };
-            lock (mensajesDAL) 
+            lock (ImedidorDAL) 
             {        
-            mensajesDAL.AgregarMensaje(mensaje);
+            IMedidorDAL.AgregarMedidor(medidor);
             }
             clienteCom.Desconectar();
         }
