@@ -30,15 +30,15 @@ namespace SMedidorModel.DAL
 
 
         private static string url = Directory.GetCurrentDirectory(); //trae la ruta del proyecto
-        private static string archivo = url + "/mensajes.txt"; // concatena los datos 
+        private static string archivo = url + "/lecturas.txt"; // concatena los datos 
 
-        public void AgregarMensaje(Medidor mensaje)
+        public void AgregarMensaje(Medidor medidor)
         {
             try
             {
                 using (StreamWriter write = new StreamWriter(archivo, true))
                 {
-                    write.WriteLine(mensaje.Nombre +" ; "+ mensaje.Texto +" ; " + mensaje.Tipo);
+                    write.WriteLine(medidor.NroMedidor + " ; "+ medidor.FechaM +" ; " + medidor.ValorConsumo);
                     write.Flush();
                 }
             }
@@ -61,12 +61,12 @@ namespace SMedidorModel.DAL
                         texto = read.ReadLine();
                         if (texto != null)
                         {
-                            string[] arr = texto.Trim().Split(';');
+                            string[] arr = texto.Trim().Split('|');
                             Medidor mensaje = new Medidor()
                             {
-                                Nombre = arr[0],
-                                Texto = arr[1],
-                                Tipo = arr[2]
+                                NroMedidor = Convert.ToInt32(arr[0]),
+                                FechaM = arr[1],
+                                ValorConsumo = Convert.ToInt32(arr[2])
                             };
                             lista.Add(mensaje);
                         }

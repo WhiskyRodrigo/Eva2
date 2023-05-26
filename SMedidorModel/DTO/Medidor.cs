@@ -8,17 +8,14 @@ namespace SMedidorModel.DTO
 {
     public class Medidor
     {
-        private int numero;
-        private string fecha;
+        private int nroMedidor;
+        private string Fecha;
         private double valorConsumo;
 
-        public int Numero { get => numero; set => numero = value; }
-        public string Fecha { get => fecha; set => fecha = value; }
+        public int NroMedidor { get => nroMedidor; set => nroMedidor = value; }
+        public string FechaM { get => Fecha; set => Fecha = value; }
         public double ValorConsumo { get => valorConsumo; set => valorConsumo = value; }
-        public override string ToString()
-        {
-            return numero + "|" + fecha + "|" + valorConsumo;
-        }
+
     }
 }
 
