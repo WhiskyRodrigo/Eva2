@@ -24,7 +24,7 @@ namespace Eva2.Comunicacion
             Int32 nroMedidor = Convert.ToInt32(clienteCom.Leer());
             clienteCom.Escribir("Ingrese Fecha: ");
             string fecha = clienteCom.Leer();
-            clienteCom.Escribir("Ingrese valor de Consumo: ");
+            clienteCom.Escribir("Ingrese valor del Consumo: ");
             decimal valorConsumo = Convert.ToDecimal(clienteCom.Leer());
             Medidor medidor = new Medidor()
             {
@@ -34,7 +34,7 @@ namespace Eva2.Comunicacion
             };
             lock (ImedidorDAL) 
             {        
-            IMedidorDAL.AgregarMedidor(medidor);
+            ImedidorDAL.AgregarMedidor(medidor);
             }
             clienteCom.Desconectar();
         }

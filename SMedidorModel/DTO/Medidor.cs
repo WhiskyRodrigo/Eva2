@@ -8,18 +8,19 @@ namespace SMedidorModel.DTO
 {
     public class Medidor
     {
-        private string nombre;
-        private string tipo;
-        private string texto;
+        private int numero;
+        private string fecha;
+        private double valorConsumo;
 
-        public string Nombre { get => nombre; set => nombre = value; }
-        public string Tipo { get => tipo; set => tipo = value; }
-        public string Texto { get => texto; set => texto = value; }
-
+        public int Numero { get => numero; set => numero = value; }
+        public string Fecha { get => fecha; set => fecha = value; }
+        public double ValorConsumo { get => valorConsumo; set => valorConsumo = value; }
         public override string ToString()
         {
-            return nombre + " " + texto + " " + tipo;
-            
+            return numero + "|" + fecha + "|" + valorConsumo;
         }
     }
 }
+
+
+
