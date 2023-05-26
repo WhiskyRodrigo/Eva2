@@ -1,7 +1,6 @@
 ﻿using Eva2.Comunicacion;
-using Mensajero.Comunicacion;
-using MensajeroModel.DAL;
-using MensajeroModel.DTO;
+using SMedidorModel.DAL;
+using SMedidorModel.DTO;
 using ServidorSocketUtils.Comunicacion;
 using System;
 using System.Collections.Generic;
@@ -12,11 +11,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Mensajero
+
+namespace Eva2
 {
     public class Program
     {
-        private static IMensajesDAL mensajesDAL = MensajesDALArchivos.GetInstancia();
+        private static IMedidorDAL medidorDAL = MedidorDALArchivos.GetInstancia();
         static bool Menu()
         {
             bool continuar = true;
@@ -25,7 +25,7 @@ namespace Mensajero
             switch (Console.ReadLine().Trim())
             {
                 case "1":
-                    Ingresar();
+                    Ingresar(); //...
                     break;
                 case "2":
                     Mostrar();
@@ -40,7 +40,6 @@ namespace Mensajero
             return continuar;
 
         }
-
         static void IniciarServidor()
         {
 
@@ -51,44 +50,55 @@ namespace Mensajero
             //2. El puerto tiene que ser configurable el App.Config
             //3. Cuando reciba un cliente, tiene que solicitar a ese cliente el nombre, texto y agregar el mensaje con el tipo TCO
             //
-            HebraServidor hebra = new HebraServidor();
+            int puerto = Convert.ToInt32(ConfigurationManager.AppSettings["puerto"]);
+            Console.WriteLine("Ingresa el puerto: (pulsa enter para usar por defecto el puerto {0})", puerto);
+            int puertoIngresado;
+            try
+            {
+                puertoIngresado = Convert.ToInt32(Console.ReadLine().Trim());
+            }
+            catch (Exception)
+            {
+                puertoIngresado = puerto;
+            }
+            HebraServidor hebra = new HebraServidor(puertoIngresado);
             Thread t = new Thread(new ThreadStart(hebra.Ejecutar));
             t.Start();
-            //1 Como atender a mas de un cliente
-            //2 como evitar a que dos clientes ingresen al archivo a la vez
-            //3 como evitar un bloqueo mutuo.
-            while (Menu()) ;
-
+            //1. ¿como atender mas de un cliente a las vez?
+            //2. ¿como evito que dos clientes ingresen al archivo a la vez?
+            //3. ¿como evitar el bloqueo mutuo?
+            while (Menu());
         }
+    }
         static void Ingresar()
         {
-            Console.WriteLine("Ingrese nombre: ");
-            string nombre = Console.ReadLine().Trim();
-            Console.WriteLine("Ingrese texto: ");
-            string texto = Console.ReadLine().Trim();
-            Mensaje mensaje = new Mensaje()
+            Console.WriteLine("Ingrese numero de Medidor: ");
+            Int32 nroMedidor = Convert.ToInt32(Console.ReadLine().Trim());
+            Console.WriteLine("Ingrese Fecha: ");
+            string fecha = Console.ReadLine().Trim();
+            Console.WriteLine("Ingrese Fecha: ");
+            decimal valorConsumo = Convert.ToDecimal(Console.ReadLine().Trim());
+            Medidor medidor = new Medidor()
             {
-                Nombre = nombre,
-                Texto = texto,
-                Tipo = "Aplicacion"
+                NroMedidor = nroMedidor,
+                FechaM = fecha,
+                ValorConsumo = valorConsumo
             };
-            //lock permite controlar la concurrencia.
-
-            lock (mensajesDAL)
+            lock (medidorDAL)
             {
-                mensajesDAL.AgregarMensaje(mensaje);
+                medidorDAL.AgregarMedidor(medidor);
             }
         }
         static void Mostrar()
         {
-            List<Mensaje> mensajes = null;
-            lock (mensajesDAL)
+            List<Medidor> medidor = null;
+            lock (medidorDAL)
             {
-                mensajes = mensajesDAL.ObtenerMensajes();
+                medidor = medidorDAL.ObtenerMedidor();
             }
-            foreach (Mensaje mensaje in mensajes)
+            foreach (Medidor mensaje in medidor)
             {
-                Console.WriteLine(mensaje);
+                Console.WriteLine(medidor);
             }
         }
     }

@@ -32,7 +32,7 @@ namespace SMedidorModel.DAL
         private static string url = Directory.GetCurrentDirectory(); //trae la ruta del proyecto
         private static string archivo = url + "/lecturas.txt"; // concatena los datos 
 
-        public void AgregarMensaje(Medidor medidor)
+        public void AgregarMedidor(Medidor medidor)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace SMedidorModel.DAL
             }
         }
 
-        public List<Medidor> ObtenerMensajes()
+        public List<Medidor> ObtenerMedidor()
         {
             List<Medidor> lista = new List<Medidor>();
             try
